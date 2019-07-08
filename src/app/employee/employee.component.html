@@ -1,0 +1,14 @@
+<p>Employees: </p>
+<ul class="employee">
+    <li *ngFor="let employee of employees">
+    <button class="delete" title="delete employee"
+     (click)="delete(employee)"> x </button>
+      <a  routerLink="/detail/{{employee._id}}">
+        <span>{{employee.name}}</span> -
+        <span>{{employee.email}}</span> -
+        <span>{{employee.department}}</span> 
+        
+      </a>
+
+    </li>
+  </ul>
