@@ -1,1 +1,24 @@
-<p>employee-detail works!</p>
+<div *ngIf="employee" class="employees">
+    <!-- <h2>{{employee.name | uppercase}} Details</h2> -->
+    <span>Detalhes: </span>
+    <hr>
+    <!-- <div><span>id: </span>{{employee._id}}</div> -->
+    <div style="margin-bottom: 5px">
+      <label>name:
+        <input [(ngModel)]="employee.name" placeholder="name" width="500px"/>
+      </label>
+    </div>
+    <div style="margin-bottom: 5px">
+        <label>email:
+          <input [(ngModel)]="employee.email" placeholder="email"/>
+        </label>
+    </div>
+    <div style="margin-bottom: 5px">
+        <label>department:
+          <input [(ngModel)]="employee.department" placeholder="email"/>
+        </label>
+    </div>
+    <div style="clear: both; height: 10px; width: 100%;">&nbsp;</div>
+    <button style="margin-right: 5px" (click)="goBack()">go back</button>
+    <button (click)="save()">save</button>
+  </div>

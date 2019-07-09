@@ -4,12 +4,19 @@ import {Employee} from './employee'
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
   private employeesUrl = 'http://localhost:3000/employees';  // URL to web api
+
+  
 
   constructor( private http: HttpClient) { }
 
@@ -19,6 +26,33 @@ export class EmployeeService {
         catchError(this.handleError<Employee[]>('getEmployees', []))
       );
   }
+
+    /** GET employee by id. Will 404 if id not found */
+    getEmployee(id: string): Observable<Employee> {
+      const url = `${this.employeesUrl}/${id}`;
+      return this.http.get<Employee>(url).pipe(
+        tap(_ => this.log(`fetched employee id=${id}`)),
+        catchError(this.handleError<Employee>(`employee id=${id}`))
+      );
+    }
+
+    /** PUT: update the hero on the server */
+    updateEmployee (employee: Employee): Observable<any> {
+      const url = `${this.employeesUrl}/${employee._id}`;
+      return this.http.put(url, employee, httpOptions).pipe(
+        tap(_ => this.log(`updated employee id=${employee._id}`)),
+        catchError(this.handleError<any>('updateEmployee'))
+      );    
+    }
+
+    /** PUT: update the hero on the server */
+    deleteEmployee (employee: Employee): Observable<any> {
+        const url = `${this.employeesUrl}/${employee._id}`;
+        return this.http.delete(url,  httpOptions).pipe(
+          tap(_ => this.log(`deleteEmployee hero id=${employee._id}`)),
+          catchError(this.handleError<any>('deleteEmployee'))
+        );    
+    }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -35,7 +69,7 @@ export class EmployeeService {
   }
 
   private log(message: string) {
-    console.log(`HeroService: ${message}`);
+    console.log(`EmployeeService: ${message}`);
   }
 
 
