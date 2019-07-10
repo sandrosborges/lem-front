@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from './employee'
 import { EmployeeService } from './employee.service'
 
+
 @Component({
   selector: 'lem-employee',
   templateUrl: './employee.component.html',
@@ -24,6 +25,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   delete(employee: Employee): void {
+
     this.employees = this.employees.filter(h => h !== employee);
     this.employeeService.deleteEmployee(employee).subscribe();
   }

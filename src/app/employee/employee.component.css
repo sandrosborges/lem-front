@@ -7,7 +7,7 @@
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
-    width: 45em;
+    width: 40em;
   }
   .employee li {
     cursor: pointer;
@@ -16,7 +16,7 @@
     background-color: #EEE;
     margin: .5em;
     padding: .3em 0;
-    height: 1.6em;
+    height: 3.0em;
     border-radius: 4px;
   }
   .employee li.selected:hover {
@@ -47,10 +47,16 @@
     border-radius: 4px 0 0 4px;
   }
 
-  button.delete {
+  /* button.delete {
     position: relative;
     background-color: gray !important;
     color: white;
     margin-right: 1%;
     margin-left: 1%;
+  } */
+
+  .btn-delete{
+    margin-right: 2%;
+    margin-left: 2%;
+
   }

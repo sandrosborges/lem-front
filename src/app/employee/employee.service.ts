@@ -36,6 +36,15 @@ export class EmployeeService {
       );
     }
 
+    /** POST: update the hero on the server */
+    createEmployee (employee: any): Observable<any> {
+      const url = `${this.employeesUrl}`;
+      return this.http.post(url, employee, httpOptions).pipe(
+        tap(_ => this.log(`create employee id=${employee}`)),
+        catchError(this.handleError<any>('createEmployee'))
+      );    
+    }
+
     /** PUT: update the hero on the server */
     updateEmployee (employee: Employee): Observable<any> {
       const url = `${this.employeesUrl}/${employee._id}`;
@@ -45,7 +54,7 @@ export class EmployeeService {
       );    
     }
 
-    /** PUT: update the hero on the server */
+    /** delete: update the hero on the server */
     deleteEmployee (employee: Employee): Observable<any> {
         const url = `${this.employeesUrl}/${employee._id}`;
         return this.http.delete(url,  httpOptions).pipe(

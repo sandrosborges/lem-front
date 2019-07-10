@@ -1,14 +1,18 @@
-<p>Employees: </p>
+<div class="employee container" >
+    <alert type="info"><b>Employees: </b></alert>
 <ul class="employee">
-    <li *ngFor="let employee of employees">
-    <button class="delete" title="delete employee"
-     (click)="delete(employee)"> x </button>
+    <li *ngFor="let employee of employees" class="list-group-item"  >
+    <!-- <button class="delete" title="delete employee"
+     > x </button> -->
+     <button (click)="delete(employee)" type="button" class="btn btn-danger btn-delete" 
+     title="delete employee"> X </button>
       <a  routerLink="/detail/{{employee._id}}">
         <span>{{employee.name}}</span> -
         <span>{{employee.email}}</span> -
-        <span>{{employee.department}}</span> 
-        
+        <span>{{employee.department}}</span>         
       </a>
 
     </li>
   </ul>
+  <a  routerLink="/detail/0" class="btn btn-primary" > cadastro </a>
+</div>
