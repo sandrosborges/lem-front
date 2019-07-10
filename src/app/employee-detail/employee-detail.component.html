@@ -5,38 +5,39 @@
     <span>Detalhes: </span>
     <hr>
     <!-- <div><span>id: </span>{{employee._id}}</div> -->
-    <div class="row">
+    <div class="row rowSpace">
       <div class="col-md-1">
          name:
       </div>
       <div class="col-md-11">
           <input required [(ngModel)]="employee.name" placeholder="name" 
-          width="500px" class="form-control" formControlName="name"/>        
+          width="500px" class="form-control" formControlName="name"/> 
+          <small class="text-danger" *ngIf="employeeForm.hasError('required', 'name')"> Nome é requerido! </small>       
       </div>
     </div>
-    <div class="row">
+    <div class="row rowSpace">
         
             <div class="col-md-1">
             email:
             </div>
-            <div class="col-md-11">
-                <div  errorMessage="E-mail inválido" label="E-mail">
+            <div class="col-md-11"> 
                     <input required [(ngModel)]="employee.email" placeholder="email" 
                     class="form-control" formControlName="email"/>
-                </div> 
-                 
+                    <small class="text-danger" *ngIf="employeeForm.hasError('required', 'email')"> Email é requerido! </small> 
+                    <small class="text-danger" *ngIf="employeeForm.hasError('pattern', 'email')"> Email inválido! </small>                 
                 
             </div>
         
     </div>
     
-    <div class="row">
+    <div class="row rowSpace">
         <div class="col-md-1">
           department:
         </div>
         <div class="col-md-11">
             <input required [(ngModel)]="employee.department" placeholder="department" 
             class="form-control" formControlName="department"/>
+            <small class="text-danger" *ngIf="employeeForm.hasError('required', 'department')"> Department é requerido! </small> 
         </div>
     </div>
     </form>
